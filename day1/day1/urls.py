@@ -18,7 +18,7 @@ from django.urls import path,include
 # from . import admin_site
 
 urlpatterns = [
-    path('polls/', include('polls.urls')),
+    path('polls/', include('polls.urls', namespace="polls")),
     # path('myadmin/', include('admin_site.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
 ]
