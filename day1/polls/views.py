@@ -4,9 +4,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Choice, Question
 from django.urls import reverse
+from django.utils import timezone
 
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    latest_question_list = Question.objects.filter(pub_date__lte = timezone.now()).order_by('-pub_date')[:5]
     context = { 'latest_question_list' : latest_question_list}
     # output = ', '.join([q.question_text for q in latest_question_list])
     return render(request, 'polls/index.html',context)
